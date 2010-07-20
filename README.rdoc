@@ -1,13 +1,23 @@
-= vbulletin
+= VBulletin
 
-Description goes here.
+This is a gem to help extract data from vBulletin Forums, specifically those which you have no control over. It attempts
+to fetch the requested data as quickly as possible while using the least amount of bandwidth overall.
+
+== Examples
+
+    api = VBulletin::Base.new('http://forums.heroesofnewerth.com') # no trailing slash
+    api.login('Limi', 'md5_hash_of_your_password_goes_here')
+    posts = api.search.find_posts_by_user_id(6)
+    => [#<VBulletin::Post:0xb73a8d1c @created_at="Yesterday, 10:56 PM", @author_id="6", @content="This is a post on a thread", @id="12171587", @author_name="Maliken">, #<VBulletin::Post:0xb738e2dc @created_at="Yesterday, 05:06 PM", @author_id="6", @content="This is another post", @id="12170283", @author_name="Maliken">]
+
+    posts.first.thread
+    => #<VBulletin::Thread:0xb73b2768 @title="Hon needs Blizzard and Starfall", @id="149612", @created_at="07-19-2010 07:20 PM">
 
 == Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
