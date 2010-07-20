@@ -1,4 +1,4 @@
-= VBulletin
+= vBulletin
 
 This is a gem to help extract data from vBulletin Forums, specifically those which you have no control over. It attempts
 to fetch the requested data as quickly as possible while using the least amount of bandwidth overall.
