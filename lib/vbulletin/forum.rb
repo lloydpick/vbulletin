@@ -7,13 +7,13 @@ module VBulletin
     end
 
     def all
-      parse_index(@api.construct_url("index.php"))
+      parse_index(@api.construct_full_url("index.php"))
     end
 
     private
     def parse_index(url)
-      if (result = @api.get_data(url))
-        puts result.inspect
+      if (result = @api.mechanize.get(url))
+        puts result.body
       end
     end
 
