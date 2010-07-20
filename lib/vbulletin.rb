@@ -2,9 +2,7 @@ require 'rubygems'
 
 gem 'nokogiri', '1.4.2'
 gem 'mechanize', '1.0.0'
-gem 'chronic', '0.2.3'
 require 'activesupport'
-require 'chronic'
 require 'mechanize'
 
 require 'uri'
