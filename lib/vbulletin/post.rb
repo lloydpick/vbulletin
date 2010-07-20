@@ -14,7 +14,7 @@ module VBulletin
       # Yesterday at 05:06 PM
       @created_at.gsub!('Yesterday', Date.yesterday.strftime("%m-%d-%Y"))
       @created_at.gsub!(',', '')
-      DateTime.strptime(@created_at, '%m-%d-%Y %I:%M %p')
+      @created_at = DateTime.strptime(@created_at, '%m-%d-%Y %I:%M %p')
     end
 
     def thread

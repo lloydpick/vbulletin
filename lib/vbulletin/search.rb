@@ -16,7 +16,7 @@ module VBulletin
         thread_title = thread_link.content
         thread_id = CGI.parse(URI.parse(thread_link['href']).query)['t'][0]
         thread_author = result.search('//td[@class="page"]/table/tr/td').first
-        thread_created_at = result.search('//td[@class="page"]/table/tr/td[@class="smallfont"]').first.to_s
+        thread_created_at = result.search('//td[@class="page"]/table/tr/td[@class="smallfont"]').first.inner_html
         VBulletin::Thread.new(:id => thread_id, :title => thread_title, :created_at => thread_created_at)
       end
     end
