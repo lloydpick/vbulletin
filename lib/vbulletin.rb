@@ -2,6 +2,7 @@ require 'rubygems'
 
 gem 'nokogiri', '1.4.2'
 gem 'mechanize', '1.0.0'
+gem 'activesupport'
 require 'activesupport'
 require 'mechanize'
 
