@@ -6,8 +6,9 @@ module VBulletin
       @debug = options[:debug] || false
     end
 
-    def find_posts_by_user_id(user_id)
-      parse_index(@api.construct_full_url("search.php", { 'do' => 'finduser', 'u' => user_id }))
+    def find_posts_by_user_id(user_id, options = {})
+      @perpage = options[:perpage] || 10
+      parse_index(@api.construct_full_url("search.php", { 'do' => 'finduser', 'u' => user_id }), @perpage)
     end
 
     def find_thread_by_post_id(post_id)
@@ -26,9 +27,9 @@ module VBulletin
     end
 
     private
-    def parse_index(url)
+    def parse_index(url, perpage)
       if (result = @api.mechanize.get(url))
-        if (result = @api.mechanize.get(result.uri.to_s + "&perpage=10"))
+        if (result = @api.mechanize.get(result.uri.to_s + "&perpage=" + perpage.to_s))
           parse_search_results(result)
         end
       end
