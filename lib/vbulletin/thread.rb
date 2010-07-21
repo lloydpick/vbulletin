@@ -1,7 +1,7 @@
 module VBulletin
   class Thread < Base
 
-    attr_reader :id, :title, :api, :created_at
+    attr_reader :id, :title, :api, :created_at, :forum
 
     def initialize(*params)
       params.each do |key|

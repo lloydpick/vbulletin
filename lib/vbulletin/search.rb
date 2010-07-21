@@ -17,7 +17,11 @@ module VBulletin
         thread_id = CGI.parse(URI.parse(thread_link['href']).query)['t'][0]
         thread_author = result.search('//td[@class="page"]/table/tr/td').first
         thread_created_at = result.search('//td[@class="page"]/table/tr/td[@class="smallfont"]').first.inner_html
-        VBulletin::Thread.new(:id => thread_id, :title => thread_title, :created_at => thread_created_at)
+        forum = result.links_with(:href => /forumdisplay.php/).first
+        thread_forum_name = forum.text
+        thread_forum_id = CGI.parse(URI.parse(forum.href).query)['f'][0]
+        forum = VBulletin::Forum.new(:id => thread_forum_id, :name => thread_forum_name)
+        VBulletin::Thread.new(:id => thread_id, :title => thread_title, :created_at => thread_created_at, :forum => forum)
       end
     end
 
